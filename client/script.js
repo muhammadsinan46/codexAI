@@ -78,8 +78,7 @@ const handleSubmit = async (e) => {
 
     loader(messageDiv)
   // fetch data from server
-  
-  const response = await fetch('https://codexai-t1n1.onrender.com/', {
+  const response =await fetch('https://codexai-t1n1.onrender.com',{
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
