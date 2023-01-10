@@ -78,35 +78,35 @@ const handleSubmit = async (e) => {
 
     loader(messageDiv)
   // fetch data from server
-  const response =await fetch('https://codexai-t1n1.onrender.com',{
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-        prompt: data.get('prompt')
+      const response = await fetch('https://codexai-t1n1.onrender.com/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            prompt: data.get('prompt')
+        })
     })
-})
 
-clearInterval(loadInterval)
-messageDiv.innerHTML = " "
+    clearInterval(loadInterval)
+    messageDiv.innerHTML = " "
 
-if (response.ok) {
-    const data = await response.json();
-    const parsedData = data.bot.trim() // trims any trailing spaces/'\n' 
+    if (response.ok) {
+        const data = await response.json();
+        const parsedData = data.bot.trim() // trims any trailing spaces/'\n' 
 
-    typeText(messageDiv, parsedData)
-} else {
-    const err = await response.text()
+        typeText(messageDiv, parsedData)
+    } else {
+        const err = await response.text()
 
-    messageDiv.innerHTML = "Something went wrong"
-    alert(err)
-}
+        messageDiv.innerHTML = "Something went wrong"
+        alert(err)
+    }
 }
 
 form.addEventListener('submit', handleSubmit)
 form.addEventListener('keyup', (e) => {
-if (e.keyCode === 13) {
-    handleSubmit(e)
-}
+    if (e.keyCode === 13) {
+        handleSubmit(e)
+    }
 })
